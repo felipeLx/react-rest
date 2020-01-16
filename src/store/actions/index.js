@@ -7,6 +7,12 @@
 // } from './products';
 
 export {
+    setProducts,
+    fetchProductsFailed,
+    toggleFav
+} from './products';
+
+export {
     auth,
     logout,
     setAuthRedirectPath,
