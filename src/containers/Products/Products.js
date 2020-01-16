@@ -11,10 +11,10 @@ const Products = props => {
     <ul className="products-list">
       {state.products.map(prod => (
         <ProductItem
-          key={prod.id}
-          id={prod.id}
-          title={prod.title}
-          description={prod.description}
+          key={prod.name}
+          name={prod.name}
+          aliases={prod.aliases}
+          playedBy={prod.playedBy}
           isFav={prod.isFavorite}
         />
       ))}
