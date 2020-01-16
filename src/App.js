@@ -5,7 +5,7 @@ import * as actions from './store/actions/index';
 
 import Layout from './hoc/Layout/Layout';
 import Logout from './containers/Auth/Logout/Logout';
-import ProductsPage from './containers/Products';
+import ProductsPage from './containers/Products/Products';
 
 const FavoritesPage = React.lazy(() => {
   return import ('./containers/Favorites/Favorites');
