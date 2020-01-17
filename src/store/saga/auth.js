@@ -54,6 +54,8 @@ export function* authCheckStateSaga(action) {
             } else {
                 const userId = yield localStorage.getItem('userId');
                 yield put(actions.authSuccess(token, userId));
+                console.log(userId);
+                console.log(token);
                 yield put(actions.checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/1000));
             }
         }

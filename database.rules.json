@@ -1,0 +1,9 @@
+{
+    "rules": {
+      "favorites": {
+        ".read": "auth != null",
+          ".write":"auth != null",
+        ".indexOn": ["userId"]
+        }
+    }
+  }

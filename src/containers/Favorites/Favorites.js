@@ -9,11 +9,11 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import '../Products/Products.css';
 
 const favorites = React.memo(props => {
-  const {onRequestFavorites,token, userId} = props;
+  const {onFetchFavorites,token, userId} = props;
 
   useEffect(() =>  {
-    onRequestFavorites(token, userId);
-  }, [onRequestFavorites, token, userId]);
+    onFetchFavorites(token, userId);
+  }, [onFetchFavorites, token, userId]);
 
   let favorites = <Spinner />;
   if ( !props.loading ) {
@@ -41,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-      onRequestFavorites: (token, userId) => dispatch( actions.requestFavorites(token, userId) )
+      onFetchFavorites: (token, userId) => dispatch( actions.fetchFavorites(token, userId) )
   };
 };
 
