@@ -1,43 +1,58 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import ProductItem from '../../components/Products/ProductItem';
 import { useStore } from '../../hooks-store/store';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import * as actions from '../../store/actions/index';
+import axios from '../../axios-store';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import './Products.css';
 
-const Products = props => {
+const products = React.memo(props => {
   const state = useStore()[0];
-  const [viewFavorites, setViewFavorites] = useState(false);
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => {
-    return state.auth.token !== null;
+  const [seeDetails, setSeeDetails] = useState(false);
+  
+  const prods = useSelector(state => {
+    return state.burgerBuilder.ingredients;
   });
-  const onSetAuthRedirectPath = (path) => dispatch(actions.setAuthRedirectPath(path));
 
-  const logginHandler = () => {
-    if(!isAuthenticated) {
-      onSetAuthRedirectPath('/auth'); 
-      props.history.push('/auth');
-    } else {
-        setViewFavorites(true);
-        props.history.push('/favorites');
-    }
-}
+  const error = useSelector(state => {
+    return state.productListBuilder.error;
+  });
+
+  const seeDetailsHandler = () => {
+    setSeeDetails(true);
+  };
+
+
+  let productItem = error ? <p>Products can't be loaded!</p> : <Spinner />;
+
+  if(seeDetails) {
+    productItem = 
+    state.products.map(prod => (
+    <ProductItem
+      key={prod.id}
+      id={prod.id}
+      title={prod.title}
+      description={prod.description}
+      isFav={prod.isFavorite}
+    />
+    ))
+  } else {
+    state.products.map(prod => (
+      <ProductItem
+        key={prod.id}
+        id={prod.id}
+        title={prod.title}
+      />
+      ))
+  }
+
   return (
     <ul className="products-list">
-      {state.products.map(prod => (
-        <ProductItem
-          key={prod.id}
-          id={prod.id}
-          title={prod.title}
-          description={prod.description}
-          isFav={prod.isFavorite}
-        />
-      ))}
+      <div onClick={seeDetailsHandler}>{productItem}</div>
     </ul>
   );
-};
+});
 
-export default Products;
+export default withErrorHandler(products, axios);
