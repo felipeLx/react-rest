@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ProductItem from '../../components/Products/ProductItem';
-import { useStore } from '../../hooks-store/store';
+import * as actions from '../../store/actions/index';
 import './Products.css';
 
 const Products = props => {
-  const state = useStore()[0];
+  const state = actions.setProducts;
  
   return (
     <ul className="products-list">
       {state.products.map(prod => (
         <ProductItem
-          key={prod.name}
+          key={prod.id}
           name={prod.name}
           aliases={prod.aliases}
           playedBy={prod.playedBy}
