@@ -1,31 +1,30 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 
-import FavoriteItem from '../components/Favorites/FavoriteItem';
-import './Products.css';
+import FavoriteItem from '../../components/Favorites/FavoriteItem';
+// import ProductsContext from '../context/products-context';
+import { useStore } from '../../hooks-store/store';
+import '../Products/Products.css';
 
-const Favorites = React.memo(props => {
-  const favoriteData = props.data.filter(p => p.isFavorite);
+const Favorites = props => {
+  // const favoriteProducts = useContext(ProductsContext).products.filter(p => p.isFavorite);
+  const state = useStore()[0];
+  const favoriteProducts = state.products.filter(p => p.isFavorite);
   let content = <p className="placeholder">Got no favorites yet!</p>;
-  if (favoriteData.length > 0) {
+  if (favoriteProducts.length > 0) {
     content = (
       <ul className="products-list">
-        {favoriteData.map(prod => (
+        {favoriteProducts.map(prod => (
           <FavoriteItem
-            key={prod.name}
-            name={prod.name}
-            aliases={prod.aliases[0]}
-            playedBy={prod.playedBy}
+            key={prod.id}
+            id={prod.id}
+            title={prod.title}
+            description={prod.description}
           />
         ))}
       </ul>
     );
   }
   return content;
-});
+};
 
-const mapStateToProps = (state) => ({
-  data: state.data,
-  })
-
-export default connect(mapStateToProps)(Favorites);
+export default Favorites;

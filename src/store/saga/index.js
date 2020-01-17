@@ -13,6 +13,6 @@ export function* watchAuth() {
     ]);
 }
 
-export function* watchProducts() {
-    yield takeEvery(actionType.SET_PRODUCTS, initProductsSaga);
-}
+// export function* watchProducts() {
+//     yield takeEvery(actionType.SET_PRODUCTS, initProductsSaga);
+// }

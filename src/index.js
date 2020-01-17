@@ -9,14 +9,15 @@ import createSagaMiddleware from 'redux-saga';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import productsReducer from './store/reducers/products';
 import authReducer from './store/reducers/auth';
-import {watchAuth, watchProducts } from './store/saga';
+import {watchAuth } from './store/saga';
+import configureProductsStore from './hooks-store/products-store';
+
+configureProductsStore();
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
-    products: productsReducer,
     auth: authReducer
 });
 
@@ -27,7 +28,6 @@ const store = createStore(rootReducer, composeEnhancers(
 ));
 
 sagaMiddleware.run(watchAuth);
-sagaMiddleware.run(watchProducts);
 
 const app = (
     <Provider store={store}>

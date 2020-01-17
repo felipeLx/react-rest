@@ -1,28 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 
-import ProductItem from '../components/Products/ProductItem';
+import ProductItem from '../../components/Products/ProductItem';
+// import { ProductsContext } from '../context/products-context';
+import { useStore } from '../../hooks-store/store';
 import './Products.css';
 
-const Products = React.memo(props => {
+const Products = props => {
+  // const productList = useContext(ProductsContext).products;
+  const state = useStore()[0];
  
   return (
     <ul className="products-list">
-      {props.data.map(prod => (
+      {state.products.map(prod => (
         <ProductItem
-          key={prod.name}
-          name={prod.name}
-          aliases={prod.aliases[0]}
-          playedBy={prod.playedBy}
+          key={prod.id}
+          id={prod.id}
+          title={prod.title}
+          description={prod.description}
           isFav={prod.isFavorite}
         />
       ))}
     </ul>
   );
-});
+};
 
-const mapStateToProps = (state) => ({
-  data: state.data,
-  })
-
-export default connect(mapStateToProps)(Products);
+export default Products;
