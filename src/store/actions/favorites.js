@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-export const requestFavoriteSuccess = ( id, favoriteData ) => {
+export const requestFavoritesSuccess = ( id, favoriteData ) => {
     return {
         type: actionTypes.REQUEST_FAVORITE_SUCCESS,
         favoriteId: id,
@@ -8,20 +8,20 @@ export const requestFavoriteSuccess = ( id, favoriteData ) => {
     };
 };
 
-export const requestFavoriteFail = ( error ) => {
+export const requestFavoritesFail = ( error ) => {
     return {
         type: actionTypes.REQUEST_FAVORITE_FAIL,
         error: error
     };
 }
 
-export const requestFavoriteStart = () => {
+export const requestFavoritesStart = () => {
     return {
         type: actionTypes.REQUEST_FAVORITE_START
     };
 };
 
-export const purchaseBurger = ( favoriteData, token ) => {
+export const requestFavorites = ( favoriteData, token ) => {
     return {
         type: actionTypes.REQUEST_FAVORITE,
         favoriteData: favoriteData,
@@ -29,9 +29,9 @@ export const purchaseBurger = ( favoriteData, token ) => {
     }
 };
 
-export const favoriteInit = () => {
+export const requestInit = () => {
     return {
-        type: actionTypes.FAVORITE_INIT
+        type: actionTypes.REQUEST_INIT
     };
 };
 

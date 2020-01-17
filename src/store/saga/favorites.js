@@ -3,32 +3,32 @@ import axios from '../../axios-store';
 
 import * as actions from '../actions/index';
 
-export function* requestFavoritesSaga(action) {
+export function* fetchFavoritesSaga(action) {
     
-    yield put( actions.requestFavoritesStart() );
+    yield put( actions.fetchFavoritesStart() );
     try{
         const response = yield axios.post( '/favorites.json?auth=' + action.token, action.favoritesData )
         //console.log( response.data );
-        yield put( actions.setFavoritesSuccess( response.data.name, action.favoritesData ) );
+        yield put( actions.fetchFavoritesSuccess( response.data.name, action.favoritesData ) );
         } catch(error)  {
-                yield put( actions.setFavoritesFail( error ) );
+                yield put( actions.fetchFavoritesFail( error ) );
         } 
 }
 
-export function* fetchFavoritesSaga(action) {
-    yield put(actions.fetchFavoritesStart());
+export function* requestFavoritesSaga(action) {
+    yield put(actions.requestFavoritesStart());
         const queryParams = '?auth=' + action.token + '&orderBy="userId"&equalTo="' + action.userId + '"';
         try{
             const response = yield axios.get( '/favorites.json' + queryParams );
-            const fetchedFavorites = [];
+            const requestFavorites = [];
                 for ( let key in response.data ) {
-                    fetchedFavorites.push( {
+                    requestFavorites.push( {
                         ...response.data[key],
                         id: key
                     } );
                 }
-                yield put(actions.fetchFavoritesSuccess(fetchedFavorites));    
+                yield put(actions.requestFavoritesSuccess(requestFavorites));    
         } catch(error) {
-            yield put(actions.fetchFavoritesFail(error));
+            yield put(actions.requestFavoritesFail(error));
           }
     } 

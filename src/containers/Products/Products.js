@@ -8,7 +8,7 @@ import './Products.css';
 
 const products = React.memo(props => {
   const state = useStore()[0];
-  const [seeDetails, setSeeDetails] = useState(false);
+  const [seeDetails, setSeeDetails] = useState(true);
   
   let productItem = [];
 
@@ -37,7 +37,7 @@ const products = React.memo(props => {
 
   return (
     <ul className="products-list">
-      <div onClick={() => setSeeDetails(!seeDetails)}>{productItem}</div>
+      <div>{productItem}</div>
     </ul>
   );
 });

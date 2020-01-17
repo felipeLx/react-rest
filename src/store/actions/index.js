@@ -7,11 +7,11 @@
 // } from './products';
 
 export {
-    requestFavorite,
+    requestFavorites,
     requestInit,
-    requestFavoriteStart,
-    requestFavoriteSuccess,
-    requestFavoriteFail,
+    requestFavoritesStart,
+    requestFavoritesSuccess,
+    requestFavoritesFail,
     fetchFavorites,
     fetchFavoritesSuccess,
     fetchFavoritesFail,
