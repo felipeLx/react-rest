@@ -6,11 +6,17 @@
 //     fetchIngredientsFailed
 // } from './products';
 
-// export {
-//     setProducts,
-//     fetchProductsFailed,
-//     toggleFav
-// } from './products';
+export {
+    requestFavorite,
+    requestInit,
+    requestFavoriteStart,
+    requestFavoriteSuccess,
+    requestFavoriteFail,
+    fetchFavorites,
+    fetchFavoritesSuccess,
+    fetchFavoritesFail,
+    fetchFavoritesStart
+} from './favorites';
 
 export {
     auth,

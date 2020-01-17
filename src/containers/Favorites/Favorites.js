@@ -1,30 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import FavoriteItem from '../../components/Favorites/FavoriteItem';
-// import ProductsContext from '../context/products-context';
-import { useStore } from '../../hooks-store/store';
+import axios from '../../axios-store';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import * as actions from '../../store/actions/index';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import '../Products/Products.css';
 
-const Favorites = props => {
-  // const favoriteProducts = useContext(ProductsContext).products.filter(p => p.isFavorite);
-  const state = useStore()[0];
-  const favoriteProducts = state.products.filter(p => p.isFavorite);
-  let content = <p className="placeholder">Got no favorites yet!</p>;
-  if (favoriteProducts.length > 0) {
-    content = (
-      <ul className="products-list">
-        {favoriteProducts.map(prod => (
-          <FavoriteItem
-            key={prod.id}
-            id={prod.id}
-            title={prod.title}
-            description={prod.description}
-          />
-        ))}
-      </ul>
-    );
-  }
-  return content;
+const favorites = React.memo(props => {
+  const {onFetchFavorites,token, userId} = props;
+
+  useEffect(() =>  {
+    onFetchFavorites(token, userId);
+  }, [onFetchFavorites, token, userId]);
+
+  let favorites = <Spinner />;
+  if ( !props.loading ) {
+    favorites = props.favorites.map( favorite => (
+        <FavoriteItem
+            key={favorite.id}
+            id={favorite.id}
+            title={favorite.title}
+            description={favorite.description} />
+    ) )
+}
+  return (
+    <div>{favorites}</div>
+  );
+});
+
+const mapStateToProps = state => {
+  return {
+      favorites: state.favorite.favorites,
+      loading: state.favorite.loading,
+      token: state.auth.token,
+      userId: state.auth.userId
+  };
 };
 
-export default Favorites;
+const mapDispatchToProps = dispatch => {
+  return {
+      onFetchFavorites: (token, userId) => dispatch( actions.fetchFavorites(token, userId) )
+  };
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( withErrorHandler( favorites, axios ) );

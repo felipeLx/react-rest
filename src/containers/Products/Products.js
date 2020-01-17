@@ -1,31 +1,16 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import ProductItem from '../../components/Products/ProductItem';
 import { useStore } from '../../hooks-store/store';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-store';
-import Spinner from '../../components/UI/Spinner/Spinner';
 import './Products.css';
 
 const products = React.memo(props => {
   const state = useStore()[0];
   const [seeDetails, setSeeDetails] = useState(false);
   
-  const prods = useSelector(state => {
-    return state.burgerBuilder.ingredients;
-  });
-
-  const error = useSelector(state => {
-    return state.productListBuilder.error;
-  });
-
-  const seeDetailsHandler = () => {
-    setSeeDetails(true);
-  };
-
-
-  let productItem = error ? <p>Products can't be loaded!</p> : <Spinner />;
+  let productItem = [];
 
   if(seeDetails) {
     productItem = 
@@ -37,8 +22,10 @@ const products = React.memo(props => {
       description={prod.description}
       isFav={prod.isFavorite}
     />
+    
     ))
   } else {
+    productItem = 
     state.products.map(prod => (
       <ProductItem
         key={prod.id}
@@ -50,7 +37,7 @@ const products = React.memo(props => {
 
   return (
     <ul className="products-list">
-      <div onClick={seeDetailsHandler}>{productItem}</div>
+      <div onClick={() => setSeeDetails(!seeDetails)}>{productItem}</div>
     </ul>
   );
 });
