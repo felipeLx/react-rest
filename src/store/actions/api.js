@@ -1,23 +1,4 @@
-import { API_START, API_END, ACCESS_DENIED, API_ERROR } from "./actionTypes";
+import { REQUEST_API_DATA, RECEIVE_API_DATA  } from "./actionTypes";
 
-export const apiStart = label => ({
-  type: API_START,
-  payload: label
-});
-
-export const apiEnd = label => ({
-  type: API_END,
-  payload: label
-});
-
-export const accessDenied = url => ({
-  type: ACCESS_DENIED,
-  payload: {
-    url
-  }
-});
-
-export const apiError = error => ({
-  type: API_ERROR,
-  error
-});
+export const requestApiData = () => ({ type: REQUEST_API_DATA });
+export const receiveApiData = data => ({ type: RECEIVE_API_DATA, data });

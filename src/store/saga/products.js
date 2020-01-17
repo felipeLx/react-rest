@@ -1,13 +1,17 @@
-import { put } from 'redux-saga/effects';
-import axios from 'axios';
+import { call, put, takeLatest } from "redux-saga/effects";
+import { REQUEST_API_DATA, receiveApiData } from "..actions/actions";
+import { fetchData } from "./api";
 
-import * as actions from '../actions/index';
+function* getApiData(action) {
+    try {
+        const data = yield call(fetchData);
+        yield put(receiveApiData(data));
+      } catch (e) {
+        console.log(e);
+      }
+ }
 
-export function* initProductsSaga(action) {
-    try{
-        const response = yield axios.get( 'https://anapioficeandfire.com/api/characters/' )
-        yield put(actions.setProducts(response.data));
-    } catch(error) {
-        yield put(actions.fetchProductsFailed());
-    }
-}
+ export default function* mySaga() {
+    yield takeLatest(REQUEST_API_DATA, getApiData);
+  }
+

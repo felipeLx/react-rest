@@ -1,26 +1,28 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import ProductItem from '../../components/Products/ProductItem';
-import * as actions from '../../store/actions/index';
+import ProductItem from '../components/Products/ProductItem';
 import './Products.css';
 
-const Products = props => {
-  const state = actions.setProducts;
+const Products = React.memo(props => {
  
   return (
     <ul className="products-list">
-      {state.products.map(prod => (
+      {props.data.map(prod => (
         <ProductItem
-          key={prod.id}
+          key={prod.name}
           name={prod.name}
-          aliases={prod.aliases}
+          aliases={prod.aliases[0]}
           playedBy={prod.playedBy}
           isFav={prod.isFavorite}
         />
       ))}
     </ul>
   );
-};
+});
 
-export default Products;
+const mapStateToProps = (state) => ({
+  data: state.data,
+  })
+
+export default connect(mapStateToProps)(Products);

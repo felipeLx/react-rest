@@ -1,16 +1,16 @@
-export const FETCH_ARTICLE_DETAILS = "FETCH_ARTICLE_DETAILS";
-export const SET_ARTICLE_DETAILS = "SET_ARTICLE_DETAILS";
+ export const REQUEST_API_DATA = "REQUEST_API_DATA";
+export const RECEIVE_API_DATA = "RECEIVE_API_DATA";
 
-export const API = "API";
-export const API_START = "API_START";
-export const API_END = "API_END";
-export const ACCESS_DENIED = "ACCESS_DENIED";
-export const API_ERROR = "API_ERROR";
+// export const API = "API";
+// export const API_START = "API_START";
+// export const API_END = "API_END";
+// export const ACCESS_DENIED = "ACCESS_DENIED";
+// export const API_ERROR = "API_ERROR";
 
-export const SET_PRODUCTS = 'SET_PRODUCTS';
-export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
-export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED';
-export const TOGGLE_FAV = 'TOGGLE_FAV';
+// export const SET_PRODUCTS = 'SET_PRODUCTS';
+// export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+// export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED';
+// export const TOGGLE_FAV = 'TOGGLE_FAV';
 
 export const AUTH_USER = 'AUTH_USER';
 export const AUTH_CHECK_STATE = 'AUTH_CHECK_STATE';
