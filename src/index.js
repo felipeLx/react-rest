@@ -11,7 +11,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import authReducer from './store/reducers/auth';
 import favoritesReducer from './store/reducers/favorites';
-import dataReducer from './store/reducers/products';
+// import dataReducer from './store/reducers/products';
+import dataReducer from './store/reducers/api';
 import {watchAuth, watchFavorites, watchData } from './store/saga';
 
 import configureProductsStore from './hooks-store/products-store';

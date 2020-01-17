@@ -1,10 +1,23 @@
-import { RECEIVE_API_DATA } from "../actions/actionTypes";
+import * as actions from "../actions/actionTypes";
+import { updateObject } from '../../shared/utility';
 
-export default (state = {}, { type, data }) => {
-  switch (type) {
-    case RECEIVE_API_DATA:
-      return data;
-    default:
-      return state;
-  }
+const initialState = {
+  data: [],
+  remoteData: []
 };
+
+function rootReducer(state = initialState, action) {
+  if (action.type === actions.ADD_DATA) {
+    return updateObject({}, state, {
+      data: state.data.concat(action.payload)
+    });
+  }
+  if (action.type === actions.DATA_LOADED) {
+    return updateObject({}, state, {
+      remoteData: state.remoteData.concat(action.payload)
+    });
+  }
+  return state;
+}
+
+export default rootReducer;

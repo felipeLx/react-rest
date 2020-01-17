@@ -1,9 +1,9 @@
-export {
-    setData,
-    fetchDataFailed,
-    toggleFav,
-    initData
-} from './products';
+// export {
+//     setData,
+//     fetchDataFailed,
+//     toggleFav,
+//     initData
+// } from './products';
 
 export {
     requestFavorites,
@@ -28,3 +28,8 @@ export {
     authFail,
     checkAuthTimeout
 } from './auth';
+
+export {
+    addData,
+    getData
+} from './api';

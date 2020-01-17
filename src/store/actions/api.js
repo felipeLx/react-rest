@@ -1,4 +1,9 @@
-import { REQUEST_API_DATA, RECEIVE_API_DATA  } from "./actionTypes";
+import * as actions from "./actionTypes";
 
-export const requestApiData = () => ({ type: REQUEST_API_DATA });
-export const receiveApiData = data => ({ type: RECEIVE_API_DATA, data });
+export function addData(payload) {
+  return { type: actions.ADD_DATA, payload };
+}
+
+export function getData() {
+  return { type: actions.REQUEST_DATA };
+}
