@@ -1,10 +1,9 @@
-// export {
-//     addIngredient,
-//     removeIngredient,
-//     initIngredients,
-//     setIngredients,
-//     fetchIngredientsFailed
-// } from './products';
+export {
+    setData,
+    fetchDataFailed,
+    toggleFav,
+    initData
+} from './products';
 
 export {
     requestFavorites,

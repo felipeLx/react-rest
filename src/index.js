@@ -11,7 +11,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import authReducer from './store/reducers/auth';
 import favoritesReducer from './store/reducers/favorites';
-import {watchAuth, watchFavorites } from './store/saga';
+import dataReducer from './store/reducers/products';
+import {watchAuth, watchFavorites, watchData } from './store/saga';
 
 import configureProductsStore from './hooks-store/products-store';
 
@@ -21,7 +22,8 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    favorite: favoritesReducer
+    favorite: favoritesReducer,
+    data: dataReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -32,6 +34,7 @@ const store = createStore(rootReducer, composeEnhancers(
 
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchFavorites);
+sagaMiddleware.run(watchData);
 
 const app = (
     <Provider store={store}>

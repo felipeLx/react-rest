@@ -2,7 +2,7 @@ import { takeEvery, all, takeLatest} from 'redux-saga/effects';
 
 import * as actionType from '../actions/actionTypes';
 import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga } from './auth';
-import { initProductsSaga } from './products'; 
+import { initDataSaga } from './products'; 
 import { fetchFavoritesSaga, requestFavoritesSaga } from './favorites'; 
 
 export function* watchAuth() {
@@ -16,10 +16,10 @@ export function* watchAuth() {
 
 export function* watchFavorites() {
     yield takeLatest(actionType.REQUEST_FAVORITE, requestFavoritesSaga);
-    yield takeEvery(actionType.FETCH_FAVORITES, fetchFavoritesSaga);
+    yield takeEvery(actionType.FETCH_FAVORITE, fetchFavoritesSaga);
     
 }
 
-// export function* watchProducts() {
-//     yield takeEvery(actionType.SET_PRODUCTS, initProductsSaga);
-// }
+export function* watchData() {
+    yield takeEvery(actionType.SET_DATA, initDataSaga);
+}

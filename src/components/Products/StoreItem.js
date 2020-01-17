@@ -1,32 +1,27 @@
-// import React, { useState } from 'react';
+// import React from 'react';
 
 // import Card from '../UI/Card/Card';
-// import { useStore } from '../../hooks-store/store';
-// import './ProductItem.css';
+// import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-// const ProductItem = React.memo(props => {
-//     const [openDetail, setOpenDetail] = useState(false);
-//   console.log('RENDERING');
-//   const dispatch =  useStore(false)[1];
+// const storeItem = ( props ) => {
+//     console.log(props);
+//     let transformedData = Object.keys( props.ingredients )
+//         .map( igKey => {
+//             return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
+//                 return <BurgerIngredient key={igKey + i} type={igKey} />;
+//             } );
+//         } )
+//         .reduce((arr, el) => {
+//             return arr.concat(el)
+//         }, []);
+//     if (transformedData.length === 0) {
+//         transformedData = <p>Please start adding data!</p>;
+//     }
+//     return (
+//         <Card>
+//             {transformedIngredients}
+//         </Card>
+//     );
+// };
 
-//   const toggleFavHandler = () => {
-//     dispatch('TOGGLE_FAV', props.name);
-//   };
-
-//   return (
-//     <Card style={{ marginBottom: '1rem' }}>
-//       <div className="product-item">
-//         <h2 className={props.isFav ? 'is-fav' : ''}>{props.aliases}</h2>
-//         <p>{props.playedBy}</p>
-//         <button
-//           className={!props.isFav ? 'button-outline' : ''}
-//           onClick={toggleFavHandler}
-//         >
-//           {props.isFav ? 'Un-Favorite' : 'Favorite'}
-//         </button>
-//       </div>
-//     </Card>
-//   );
-// });
-
-// export default ProductItem;
+// export default storeItem;

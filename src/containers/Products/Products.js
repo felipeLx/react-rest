@@ -1,45 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { connect } from "react-redux";
 
 import ProductItem from '../../components/Products/ProductItem';
-import { useStore } from '../../hooks-store/store';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+// import Spinner from '../../components/UI/Spinner/Spinner';
+import Aux from '../../hoc/Aux/Aux';
 import axios from '../../axios-store';
+import * as actions from '../../store/actions/index';
 import './Products.css';
 
 const products = React.memo(props => {
-  const state = useStore()[0];
-  const [seeDetails, setSeeDetails] = useState(true);
-  
-  let productItem = [];
+  const isAuthenticated = useSelector(state => {
+    return state.auth.token !== null;
+  });
+ 
+  useEffect(() => {
+    actions.setData();
+  }, []);
 
-  if(seeDetails) {
-    productItem = 
-    state.products.map(prod => (
-    <ProductItem
-      key={prod.id}
-      id={prod.id}
-      title={prod.title}
-      description={prod.description}
-      isFav={prod.isFavorite}
-    />
-    
-    ))
+  let dataItems = [];
+
+  if(isAuthenticated) {
+    dataItems = (
+      <Aux>
+        <ProductItem
+          key={props.data.id}
+          id={props.data.id}
+          title={props.data.title}
+          description={props.data.description}
+          isFav={props.data.isFavorite}
+        />
+      </Aux>
+    );
   } else {
-    productItem = 
-    state.products.map(prod => (
+    dataItems = 
+    <Aux>
       <ProductItem
-        key={prod.id}
-        id={prod.id}
-        title={prod.title}
+        key={props.data.id}
+        id={props.data.id}
+        title={props.data.title}
       />
-      ))
+    </Aux>
   }
 
   return (
     <ul className="products-list">
-      <div>{productItem}</div>
+      <div>{dataItems}</div>
     </ul>
   );
 });
 
-export default withErrorHandler(products, axios);
+const mapStateToProps = state => {
+  return { 
+    data: state.data 
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchData: () => dispatch(actions.setData()),
+    onInit: () => dispatch(actions.requestInit()),
+    onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (withErrorHandler(products, axios));

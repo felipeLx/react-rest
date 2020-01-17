@@ -37,27 +37,27 @@ export const requestInit = () => {
 
 export const fetchFavoritesSuccess = ( favorites ) => {
     return {
-        type: actionTypes.FETCH_FAVORITES_SUCCESS,
+        type: actionTypes.FETCH_FAVORITE_SUCCESS,
         favorites: favorites
     };
 };
 
 export const fetchFavoritesFail = ( error ) => {
     return {
-        type: actionTypes.FETCH_FAVORITES_FAIL,
+        type: actionTypes.FETCH_FAVORITE_FAIL,
         error: error
     };
 };
 
 export const fetchFavoritesStart = () => {
     return {
-        type: actionTypes.FETCH_FAVORITES_START
+        type: actionTypes.FETCH_FAVORITE_START
     };
 };
 
 export const fetchFavorites = (token, userId) => {
     return {
-        type: actionTypes.FETCH_FAVORITES,
+        type: actionTypes.FETCH_FAVORITE,
         token: token,
         userId: userId
     }

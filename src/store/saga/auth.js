@@ -29,8 +29,7 @@ export function* authUserSaga(action) {
         }
         try{
         const response = yield axios.post(url, authData)
-            
-        // console.log(response);
+        console.log(response);
         const expirationDate = yield new Date(new Date().getTime() + response.data.expiresIn * 1000);
         yield localStorage.setItem('token', response.data.idToken);
         yield localStorage.setItem('expirationDate', expirationDate);

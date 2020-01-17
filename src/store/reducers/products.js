@@ -1,53 +1,36 @@
-import { TOGGLE_FAV } from '../actions/products';
+import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../../shared/utility';
 
 const initialState = {
-  products: [
-    {
-      id: 'p1',
-      title: 'Red Scarf',
-      description: 'A pretty red scarf.',
-      isFavorite: false
-    },
-    {
-      id: 'p2',
-      title: 'Blue T-Shirt',
-      description: 'A pretty blue t-shirt.',
-      isFavorite: false
-    },
-    {
-      id: 'p3',
-      title: 'Green Trousers',
-      description: 'A pair of lightly green trousers.',
-      isFavorite: false
-    },
-    {
-      id: 'p4',
-      title: 'Orange Hat',
-      description: 'Street style! An orange hat.',
-      isFavorite: false
+    data: null,
+    error: false,
+    building: false
+};
+
+const setData = (state, action) => {
+    return updateObject( state, {
+        data: {
+            name: action.data.name,
+            aliases: action.data.aliases[0],
+            culture: action.data.culture,
+            playedBy: action.data.playedBy
+        },
+        error: false,
+        building: false
+    } );
+};
+
+const fetchDataFailed = (state, action) => {
+    return updateObject( state, { error: true } );
+};
+
+const reducer = ( state = initialState, action ) => {
+    switch ( action.type ) {
+        case actionTypes.SET_DATA: return setData(state, action);    
+        case actionTypes.FETCH_DATA_FAILED: return fetchDataFailed(state, action);
+        default: return state;
     }
-  ]
 };
 
-const productReducer = (state = {}, action) => {
-  switch (action.type) {
-    case TOGGLE_FAV:
-      const prodIndex = state.products.findIndex(
-        p => p.name === action.productId
-      );
-      const newFavStatus = !state.products[prodIndex].isFavorite;
-      const updatedProducts = [...state.products];
-      updatedProducts[prodIndex] = {
-        ...state.products[prodIndex],
-        isFavorite: newFavStatus
-      };
-      return {
-        ...state,
-        products: updatedProducts
-      };
-    default:
-      return state;
-  }
-};
+export default reducer;
 
-export default productReducer;

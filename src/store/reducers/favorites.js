@@ -46,12 +46,12 @@ const fetchFavoritesFail = ( state, action ) => {
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.REQUEST_INIT: return requestInit( state, action );
-        case actionTypes.REQUEST_FAVORITES_START: return requestFavoritesStart( state, action );
-        case actionTypes.REQUEST_FAVORITES_SUCCESS: return requestFavoritesSuccess( state, action )
-        case actionTypes.REQUEST_FAVORITES_FAIL: return requestFavoritesFail( state, action );
-        case actionTypes.FETCH_FAVORITES_START: return fetchFavoritesStart( state, action );
-        case actionTypes.FETCH_FAVORITES_SUCCESS: return fetchFavoritesSuccess( state, action );
-        case actionTypes.FETCH_FAVORITES_FAIL: return fetchFavoritesFail( state, action );
+        case actionTypes.REQUEST_FAVORITE_START: return requestFavoritesStart( state, action );
+        case actionTypes.REQUEST_FAVORITE_SUCCESS: return requestFavoritesSuccess( state, action )
+        case actionTypes.REQUEST_FAVORITE_FAIL: return requestFavoritesFail( state, action );
+        case actionTypes.FETCH_FAVORITE_START: return fetchFavoritesStart( state, action );
+        case actionTypes.FETCH_FAVORITE_SUCCESS: return fetchFavoritesSuccess( state, action );
+        case actionTypes.FETCH_FAVORITE_FAIL: return fetchFavoritesFail( state, action );
         default: return state;
     }
 };
