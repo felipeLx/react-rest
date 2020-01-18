@@ -2,20 +2,17 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
-    data: [],
-    loading: false
+    data: []
 };
 
 const requestApiData = (state, action) => {
     return updateObject(state,{ 
-        loading: true
     });
 };
 
 const receiveApiData = (state, action) => {
     return updateObject(state, {
-        data: action.data,
-        loading: false
+        data: action.data
     });
 };
 

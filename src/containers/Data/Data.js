@@ -1,34 +1,39 @@
 import React, { useEffect } from "react";
-import { bindActionCreators } from "redux"
 import { connect } from "react-redux";
+
 import * as actions from '../../store/actions/index';
 
-const Data = props => {
-  const {onRequestApiData} = props;
+class Data extends React.Component {
+  state = {
+    loading: true,
+    person: null
+  };
 
-  useEffect(() =>  {
-    onRequestApiData();
-  }, [onRequestApiData]);
-  
+  async componentDidMount() {
+    const url = "https://api.randomuser.me/";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ person: data.results[0], loading: false });
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <div>loading...</div>;
+    }
+
+    if (!this.state.person) {
+      return <div>didn't get a person</div>;
+    }
+
     return (
-      <ul>
-        {props.data.map(el => (
-          <li key={el.id}>{el.title}</li>
-        ))}
-      </ul>
+      <div>
+        <div>{this.state.person.name.title}</div>
+        <div>{this.state.person.name.first}</div>
+        <div>{this.state.person.name.last}</div>
+        <img alt="" src={this.state.person.picture.large} />
+      </div>
     );
+  }
 }
 
-const mapStateToProps = state => {
-  return {
-    data: state.data.slice(0,10) 
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-  onRequestApiData: () => dispatch( actions.requestApiData())
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Data);
+export default Data;

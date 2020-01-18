@@ -1,5 +1,5 @@
 import { call, put} from "redux-saga/effects";
-import axios from 'axios';
+// import axios from 'axios';
 
 import * as actions from '../actions/index';
 
@@ -14,8 +14,9 @@ export function* getApiData(action) {
 
 export const fetchData = async () => {
     try {
-      const response = await axios.get("https://anapioficeandfire.com/api/characters/");
+      const response = await fetch("https://anapioficeandfire.com/api/characters/");
       const data = await response.json();
+      console.log(data);
       return data;
     } catch (e) {
       console.log(e);
