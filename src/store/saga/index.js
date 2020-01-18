@@ -2,7 +2,7 @@ import { takeEvery, all, takeLatest} from 'redux-saga/effects';
 
 import * as actionType from '../actions/actionTypes';
 import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga } from './auth';
-import { dataSaga } from './api'; 
+import { getApiSaga } from './api'; 
 import { fetchFavoritesSaga, requestFavoritesSaga } from './favorites'; 
 
 export function* watchAuth() {
@@ -20,7 +20,8 @@ export function* watchFavorites() {
     
 }
 
-export default function* watchData() {
-    yield takeEvery(actionType.REQUEST_DATA, dataSaga);
+export default function* dataSaga() {
+    yield takeLatest(actionType.REQUEST_API_DATA, getApiSaga);
   }
+  
   

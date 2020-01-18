@@ -26,7 +26,5 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
 export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
 
-export const ADD_DATA = "ADD_DATA";
-export const REQUEST_DATA = "REQUEST_DATA";
-export const API_ERROR = "API_ERROR";
-export const DATA_LOADED = "DATA_LOADED";
+export const REQUEST_API_DATA = "REQUEST_API_DATA";
+export const RECEIVE_API_DATA = "RECEIVE_API_DATA";

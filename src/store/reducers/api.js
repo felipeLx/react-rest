@@ -1,23 +1,31 @@
-import * as actions from "../actions/actionTypes";
+import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
-  data: [],
-  remoteData: []
+    data: [],
+    loading: false
 };
 
-function rootReducer(state = initialState, action) {
-  if (action.type === actions.ADD_DATA) {
-    return updateObject({}, state, {
-      data: state.data.concat(action.payload)
+const requestApiData = (state, action) => {
+    return updateObject(state,{ 
+        loading: true
     });
-  }
-  if (action.type === actions.DATA_LOADED) {
-    return updateObject({}, state, {
-      remoteData: state.remoteData.concat(action.payload)
-    });
-  }
-  return state;
-}
+};
 
-export default rootReducer;
+const receiveApiData = (state, action) => {
+    return updateObject(state, {
+        data: action.data,
+        loading: false
+    });
+};
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actionTypes.REQUEST_API_DATA: return requestApiData(state, action);
+        case actionTypes.RECEIVE_API_DATA: return receiveApiData(state, action);
+        default:
+            return state;           
+    }
+};
+
+export default reducer;

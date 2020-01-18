@@ -1,17 +1,23 @@
-import { takeEvery, call, put } from "redux-saga/effects";
+import { call, put} from "redux-saga/effects";
 import axios from 'axios';
 
-export function* dataSaga() {
+import * as actions from '../actions/index';
+
+export function* getApiData(action) {
   try {
-    const payload = yield call(getData);
-    yield put({ type: "DATA_LOADED", payload });
+    const data = yield call(fetchData);
+    yield put(actions.receiveApiData(data));
   } catch (e) {
-    yield put({ type: "API_ERROR", payload: e });
+    console.log(e);
   }
 }
 
-export function getData() {
-  return axios.get("https://jsonplaceholder.typicode.com/posts")
-  .then(response => response.json()
-  );
-}
+export const fetchData = async () => {
+    try {
+      const response = await axios.get("https://anapioficeandfire.com/api/characters/");
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  };

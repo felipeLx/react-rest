@@ -30,6 +30,6 @@ export {
 } from './auth';
 
 export {
-    addData,
-    getData
+    requestApiData,
+    receiveApiData
 } from './api';
