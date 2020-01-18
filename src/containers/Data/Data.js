@@ -14,9 +14,12 @@ class Data extends React.Component {
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
-    this.setState({ person: data, loading: false });
+    const dataArr = data.map(res => <li key={res.name}>{data}</li>)
+    this.setState({person: dataArr} , {loading: false });
+    console.log(this.state);
   }
 
+  
   render() {
     if (this.state.loading) {
       return <div>loading...</div>;
@@ -28,8 +31,8 @@ class Data extends React.Component {
 
     return (
       <div>
-        <div>{this.state.person.aliases[0]}</div>
-        <div>{this.state.person.gender}</div>
+        {/* <div>{this.state.person.aliases[0]}</div> */}
+        <div>{this.state.person}</div>
         {/* <div>{this.state.person.name.last}</div>
         <img alt="" src={this.state.person.picture.large} /> */}
       </div>
