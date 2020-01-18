@@ -15,9 +15,9 @@ export function* getApiData(action) {
 export const fetchData = async () => {
     try {
       const response = await fetch("https://anapioficeandfire.com/api/characters/");
-      const data = await response.json();
-      console.log(data);
-      return data;
+      const json = await response.json();
+      console.log(json);
+      return json;
     } catch (e) {
       console.log(e);
     }

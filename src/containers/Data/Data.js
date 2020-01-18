@@ -6,14 +6,15 @@ import * as actions from '../../store/actions/index';
 class Data extends React.Component {
   state = {
     loading: true,
-    person: null
+    person: []
   };
 
   async componentDidMount() {
-    const url = "https://api.randomuser.me/";
+    const url = "https://anapioficeandfire.com/api/characters/";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ person: data.results[0], loading: false });
+    console.log(data);
+    this.setState({ person: data, loading: false });
   }
 
   render() {
@@ -27,10 +28,10 @@ class Data extends React.Component {
 
     return (
       <div>
-        <div>{this.state.person.name.title}</div>
-        <div>{this.state.person.name.first}</div>
-        <div>{this.state.person.name.last}</div>
-        <img alt="" src={this.state.person.picture.large} />
+        <div>{this.state.person.aliases[0]}</div>
+        <div>{this.state.person.gender}</div>
+        {/* <div>{this.state.person.name.last}</div>
+        <img alt="" src={this.state.person.picture.large} /> */}
       </div>
     );
   }

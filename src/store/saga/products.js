@@ -1,14 +1,16 @@
-import { put } from 'redux-saga/effects';
-// import axios from 'axios';
+// import { put } from "redux-saga/effects";
 
-import * as actions from '../actions/index';
+// import axios from "../../axios-orders";
+// import * as actions from "../actions";
 
-export function* initDataSaga(action) {
-    try{
-        const response = yield fetch( 'https://anapioficeandfire.com/api/characters/' )
-        console.log('initDataSaga ' + response);
-        yield put(actions.setData(response.data));
-    } catch(error) {
-        yield put(actions.fetchDataFailed());
-    }
-}
+// export function* initIngredientsSaga(action) {
+//   try {
+//     const response = yield axios.get(
+//       "https://anapioficeandfire.com/api/characters/"
+//     );
+// 	const data = response.json();
+//     yield put(actions.setIngredients(data));
+//   } catch (error) {
+//     yield put(actions.fetchIngredientsFailed());
+//   }
+// }

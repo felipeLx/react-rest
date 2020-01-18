@@ -1,8 +1,9 @@
 // export {
-//     setData,
-//     fetchDataFailed,
-//     toggleFav,
-//     initData
+//     addIngredient,
+//     removeIngredient,
+//     initIngredients,
+//     setIngredients,
+//     fetchIngredientsFailed
 // } from './products';
 
 export {
@@ -29,7 +30,7 @@ export {
     checkAuthTimeout
 } from './auth';
 
-export {
-    requestApiData,
-    receiveApiData
-} from './api';
+// export {
+//     requestApiData,
+//     receiveApiData
+// } from './api';

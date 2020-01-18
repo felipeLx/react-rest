@@ -1,24 +1,34 @@
-import * as actionTypes from './actionTypes';
+// import * as actionTypes from './actionTypes';
 
-export const toggleFav = id => {
-    return { type: actionTypes.TOGGLE_FAV, favoriteId: id };
-};
+// export const addIngredient = ( name ) => {
+//     return {
+//         type: actionTypes.ADD_INGREDIENT,
+//         ingredientName: name
+//     };
+// };
 
-export const setData = ( data ) => {
-    return {
-        type: actionTypes.SET_DATA,
-        data: data
-    };
-};
+// export const removeIngredient = ( name ) => {
+//     return {
+//         type: actionTypes.REMOVE_INGREDIENT,
+//         ingredientName: name
+//     };
+// };
 
-export const fetchDataFailed = () => {
-    return {
-        type: actionTypes.FETCH_DATA_FAILED
-    };
-};
+// export const setIngredients = ( ingredients ) => {
+//     return {
+//         type: actionTypes.SET_INGREDIENTS,
+//         ingredients: ingredients
+//     };
+// };
 
-export const initData = () => {
-    return {
-        type: actionTypes.INIT_DATA
-    };
-};
+// export const fetchIngredientsFailed = () => {
+//     return {
+//         type: actionTypes.FETCH_INGREDIENTS_FAILED
+//     };
+// };
+
+// export const initIngredients = () => {
+//     return {
+//         type: actionTypes.INIT_INGREDIENTS
+//     };
+// };
