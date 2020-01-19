@@ -42,7 +42,7 @@ const Quotes = props => {
             id={d.id}
             quote={d.content.rendered}
             by={d.title.rendered}
-            isFav={props.isFavorite}
+            isFav={d.isFavorite}
           />
         </Aux>
         ))}

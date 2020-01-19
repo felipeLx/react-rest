@@ -4,7 +4,7 @@
   color: black;
 }
 
-.quote-item div.is-fav {
+.quote-item .is-fav {
   color: #ff2058;
 }
 

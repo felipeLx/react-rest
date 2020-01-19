@@ -4,7 +4,8 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     favorites: [],
     loading: false,
-    requested: false
+    requested: false,
+    isFavorite: false
 };
 
 const requestInit = ( state, action ) => {
@@ -52,6 +53,20 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.FETCH_FAVORITE_START: return fetchFavoritesStart( state, action );
         case actionTypes.FETCH_FAVORITE_SUCCESS: return fetchFavoritesSuccess( state, action );
         case actionTypes.FETCH_FAVORITE_FAIL: return fetchFavoritesFail( state, action );
+        case actionTypes.TOGGLE_FAV:
+            const quoteIndex = state.quotes.findIndex(
+                p => p.id === action.quoteId
+            );
+            const newFavStatus = !state.quotes[quoteIndex].isFavorite;
+            const updatedQuotes = [...state.quotes];
+            updatedQuotes[quoteIndex] = {
+                ...state.products[quoteIndex],
+                isFavorite: newFavStatus
+            };
+            return {
+                ...state,
+                quotes: updatedQuotes
+            };
         default: return state;
     }
 };
