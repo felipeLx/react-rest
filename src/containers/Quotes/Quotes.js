@@ -14,10 +14,11 @@ const quotes = React.memo(props => {
   const [data, setData] = useState({quotes: []});
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [detailAllow, setDetailAllow] = useState(false);
  
   useEffect(() => {
     setIsLoading(true);
-    console.log(isLoading);
+    console.log("isLoading: " + isLoading);
     const fetchData = async () => {
       setIsError(false);
       setIsLoading(true);
@@ -32,10 +33,11 @@ const quotes = React.memo(props => {
     };
     fetchData();
   }, [isLoading]);
+
   
-  let dataItems = (
+    let shortDataItem = 
     data.quotes.map((d) => 
-      <Aux>
+      <Aux onClick={() => setDetailAllow(true)}>
         <QuoteItem
           key={d.id}
           id={d.id}
@@ -43,29 +45,26 @@ const quotes = React.memo(props => {
           isFav={props.data.isFavorite}
         />
       </Aux>
-    )
-  );
+    );
 
-  const fullQuoteHandler = () => {
-    dataItems = (
+    let bigDataItem = 
       data.quotes.map((d) => 
-      <Aux>
+      <Aux onClick={() => setDetailAllow(false)}>
         <QuoteItem
-          key={data.quotes.id}
-          id={data.quotes.id}
-          quote={data.quotes.content.rendered}
-          by={data.quotes.title.rendered}
+          key={d.quotes.id}
+          id={d.quotes.id}
+          quote={d.quotes.content.rendered}
+          by={d.quotes.title.rendered}
           isFav={props.data.isFavorite}
         />
       </Aux>
       )
-    )};
   
   return (
     <ul className="products-list">
-      <div onClick={fullQuoteHandler}>{dataItems}</div>
+      {!detailAllow ? {shortDataItem} : {bigDataItem}}
     </ul>
   );
 });
 
-export default (withErrorHandler(quotes, axios));
+export default (quotes);
