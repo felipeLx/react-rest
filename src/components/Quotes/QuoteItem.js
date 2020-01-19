@@ -6,11 +6,12 @@ import Card from '../UI/Card/Card';
 import { useStore } from '../../hooks-store/store';
 import './QuoteItem.css';
 
-const ProductItem = props => {
+const QuoteItem = props => {
   const dispatch =  useStore()[1];
   const [detailAllow, setDetailAllow] = useState(false);
 
   const toggleFavHandler = () => {
+    // toggleFav(props.id); 
     dispatch('TOGGLE_FAV', props.id);
   };
 
@@ -30,4 +31,4 @@ const ProductItem = props => {
   );
 };
 
-export default ProductItem;
+export default QuoteItem;
