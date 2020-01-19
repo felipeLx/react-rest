@@ -1,6 +1,7 @@
 .product-item h2 {
   font-size: 1.15rem;
   margin: 0.25rem 0;
+  color: black;
 }
 
 .product-item h2.is-fav {
@@ -9,4 +10,5 @@
 
 .product-item p {
   margin: 0.25rem 0;
+  color: black;
 }
