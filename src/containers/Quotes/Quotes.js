@@ -6,7 +6,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 // import Spinner from '../../components/UI/Spinner/Spinner';
 import Aux from '../../hoc/Aux/Aux';
 import axios from '../../axios-store';
-import './Products.css';
+import './Quotes.css';
 
 const url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
 
@@ -24,27 +24,31 @@ const quotes = React.memo(props => {
       try {
         const result = await axios(url);
         setData(result.data);
+        console.log(result.data);
       } catch (error) {
         setIsError(true);
       }
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [isLoading]);
   
   let dataItems = (
+    data.quotes.map((d) => 
       <Aux>
         <QuoteItem
-          key={data.quotes.id}
-          id={data.quotes.id}
-          quote={data.quotes.content.rendered}
+          key={d.id}
+          id={d.id}
+          quote={d.content.rendered}
           isFav={props.data.isFavorite}
         />
       </Aux>
+    )
   );
 
   const fullQuoteHandler = () => {
     dataItems = (
+      data.quotes.map((d) => 
       <Aux>
         <QuoteItem
           key={data.quotes.id}
@@ -54,6 +58,7 @@ const quotes = React.memo(props => {
           isFav={props.data.isFavorite}
         />
       </Aux>
+      )
     )};
   
   return (

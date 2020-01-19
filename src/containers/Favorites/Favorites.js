@@ -6,7 +6,7 @@ import axios from '../../axios-store';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import '../Products/Products.css';
+import '../Quotes/Quotes.css';
 
 const favorites = React.memo(props => {
   const {onFetchFavorites,token, userId} = props;

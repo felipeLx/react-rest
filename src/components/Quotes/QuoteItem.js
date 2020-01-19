@@ -4,7 +4,7 @@ import { dispatch } from 'react-redux';
 import Card from '../UI/Card/Card';
 // import { ProductsContext } from '../../context/products-context';
 import { useStore } from '../../hooks-store/store';
-import './ProductItem.css';
+import './QuoteItem.css';
 
 const ProductItem = props => {
   const dispatch =  useStore()[1];
