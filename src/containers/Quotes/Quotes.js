@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import QuoteItem from '../../components/Quotes/QuoteItem';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Aux from '../../hoc/Aux/Aux';
 import axios from '../../axios-store';
-import * as actions from '../../store/actions/index';
+// import * as actions from '../../store/actions/index';
 import './Quotes.css';
 
 const url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
@@ -14,7 +14,7 @@ const Quotes = props => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError,setIsError] = useState(false);
-  const [isAllowToFavorite, setIsAllowToFavorite] = useState(false);
+  // const [isAllowToFavorite, setIsAllowToFavorite] = useState(false);
  
   useEffect(() => {
     setIsLoading(true);
@@ -31,14 +31,13 @@ const Quotes = props => {
     fetchData();
   }, []);
 
-  const favoriteHandler = () => {
-    if(props.isAuthenticated) {
-        setIsAllowToFavorite(true);
-    } else {
-        props.onSetAuthRedirectPath('/favorites'); 
-        props.history.push('/auth');
-    }
-}
+//   const favoriteHandler = () => {
+//     if(props.isAuthenticated) {
+//         setIsAllowToFavorite(true);
+//     } else {
+//         props.onSetAuthRedirectPath('/auth'); 
+//     }
+// }
 
   let content = <Spinner />;
   
@@ -54,7 +53,7 @@ const Quotes = props => {
             by={d.title.rendered}
             isFav={d.isFavorite}
             isAuth={props.isAuthenticated}
-            ordered={favoriteHandler}
+            // onClick={favoriteHandler}
           />
         </Aux>
         ))}
@@ -65,15 +64,16 @@ const Quotes = props => {
   return content;
 };
 
-const mapStateToProps = state => {
-    return {
-        isAuthenticated: state.auth.token !== null
-    };
-}
+// const mapStateToProps = state => {
+//     return {
+//         isAuthenticated: state.auth.token !== null
+//     };
+// }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Quotes);
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+//     }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(Quotes);
+export default Quotes;
