@@ -1,11 +1,3 @@
-// export {
-//     addIngredient,
-//     removeIngredient,
-//     initIngredients,
-//     setIngredients,
-//     fetchIngredientsFailed
-// } from './products';
-
 export {
     requestFavorites,
     requestInit,
@@ -29,8 +21,3 @@ export {
     authFail,
     checkAuthTimeout
 } from './auth';
-
-// export {
-//     requestApiData,
-//     receiveApiData
-// } from './api';

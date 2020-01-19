@@ -7,8 +7,8 @@ const favorite = props => {
   return (
     <Card style={{ marginBottom: '1rem' }}>
       <div className="favorite-item">
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
+        <h2>{props.by}</h2>
+        <p>{props.quote}</p>
       </div>
     </Card>
   );

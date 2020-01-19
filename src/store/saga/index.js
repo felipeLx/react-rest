@@ -3,8 +3,6 @@ import { takeEvery, all, takeLatest} from 'redux-saga/effects';
 import * as actionType from '../actions/actionTypes';
 import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga } from './auth';
 import { fetchFavoritesSaga, requestFavoritesSaga } from './favorites';
-// import { getApiSaga } from './api';
-import { initIngredientsSaga } from "./products";
 
 export function* watchAuth() {
     yield all([
@@ -20,11 +18,3 @@ export function* watchFavorites() {
     yield takeEvery(actionType.FETCH_FAVORITE, fetchFavoritesSaga);
     
 }
-
-// export function* watchData() {
-//     yield takeLatest(actionType.REQUEST_API_DATA, getApiSaga);
-//   }
-  
-//   export function* watchBurgerBuilder() {
-//     yield takeEvery(actionTypes.INIT_INGREDIENTS, initIngredientsSaga);
-//   }

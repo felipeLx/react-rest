@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { dispatch } from 'react-redux';
 
 import Card from '../UI/Card/Card';
@@ -8,6 +8,7 @@ import './QuoteItem.css';
 
 const ProductItem = props => {
   const dispatch =  useStore()[1];
+  const [detailAllow, setDetailAllow] = useState(false);
 
   const toggleFavHandler = () => {
     dispatch('TOGGLE_FAV', props.id);
@@ -15,9 +16,9 @@ const ProductItem = props => {
 
   return (
     <Card style={{ marginBottom: '1rem' }}>
-      <div className="product-item">
-        <h2 className={props.isFav ? 'is-fav' : ''}>{props.by}</h2>
-        <p>{props.quotes}</p>
+      <div className="quote-item" onClick={() => setDetailAllow(!detailAllow)}>
+          {detailAllow && <h2 className={props.isFav ? 'is-fav' : ''}>{props.by}</h2>}
+        <p>{props.quote}</p>
         <button
           className={!props.isFav ? 'button-outline' : ''}
           onClick={toggleFavHandler}

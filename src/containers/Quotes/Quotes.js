@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import QuoteItem from '../../components/Quotes/QuoteItem';
 // import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-// import Spinner from '../../components/UI/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import Aux from '../../hoc/Aux/Aux';
 import axios from '../../axios-store';
 import './Quotes.css';
@@ -14,7 +14,6 @@ const Quotes = props => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError,setIsError] = useState(false);
-  // const [detailAllow, setDetailAllow] = useState(false);
  
   useEffect(() => {
     setIsLoading(true);
@@ -31,7 +30,8 @@ const Quotes = props => {
     fetchData();
   }, []);
 
-  let content = <p className="placeholder">Got no quotes yet!</p>;
+  let content = <Spinner />;
+  
   if(data.length > 0) {
     content = (
       <ul className="quotes-list">
@@ -41,28 +41,15 @@ const Quotes = props => {
             key={d.id}
             id={d.id}
             quote={d.content.rendered}
+            by={d.title.rendered}
             isFav={props.isFavorite}
           />
         </Aux>
         ))}
       </ul>
     );
-  }  
+  }
     
-    // const bigDataItem = (
-    //   data.quotes.map((d) => 
-    //   <Aux onClick={() => setDetailAllow(false)}>
-    //     <QuoteItem
-    //       key={d.quotes.id}
-    //       id={d.quotes.id}
-    //       quote={d.quotes.content.rendered}
-    //       by={d.quotes.title.rendered}
-    //       isFav={props.data.isFavorite}
-    //     />
-    //   </Aux>
-    //   )
-    // );
-  
   return content;
 };
 

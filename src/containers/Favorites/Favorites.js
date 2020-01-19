@@ -6,6 +6,7 @@ import axios from '../../axios-store';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+// import { useStore } from '../../hooks-store/store';
 import '../Quotes/Quotes.css';
 
 const favorites = React.memo(props => {
@@ -21,8 +22,8 @@ const favorites = React.memo(props => {
         <FavoriteItem
             key={favorite.id}
             id={favorite.id}
-            title={favorite.title}
-            description={favorite.description} />
+            quote={favorite.quote}
+            by={favorite.by} />
     ) )
 }
   return (

@@ -7,7 +7,6 @@ import Layout from './hoc/Layout/Layout';
 import Logout from './containers/Auth/Logout/Logout';
 import Quotes from './containers/Quotes/Quotes';
 // import Data from './containers/Data/Data';
-// import ProductsPage from './containers/Products/Products';
 
 const FavoritesPage = React.lazy(() => {
   return import ('./containers/Favorites/Favorites');
@@ -27,7 +26,6 @@ const app = React.memo(props => {
   let routes = (
     <Switch>
       <Route path="/auth" render={props => <Auth {...props} />} />
-      {/* <Route path="/" exact component={ProductsPage} /> */}
       {/* <Route path="/" exact component={Data} /> */}
       <Route path="/" exact component={Quotes} />
       <Redirect to="/" />
