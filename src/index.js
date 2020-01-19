@@ -33,6 +33,9 @@ const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk, sagaMiddleware)
 ));
 
+sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchFavorites);
+
 const app = (
     <Provider store={store}>
         <BrowserRouter>

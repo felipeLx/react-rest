@@ -1,4 +1,5 @@
 import React from 'react';
+import { dispatch } from 'react-redux';
 
 import Card from '../UI/Card/Card';
 // import { ProductsContext } from '../../context/products-context';
@@ -15,8 +16,8 @@ const ProductItem = props => {
   return (
     <Card style={{ marginBottom: '1rem' }}>
       <div className="product-item">
-        <h2 className={props.isFav ? 'is-fav' : ''}>{props.title}</h2>
-        <p>{props.description}</p>
+        <h2 className={props.isFav ? 'is-fav' : ''}>{props.by}</h2>
+        <p>{props.quotes}</p>
         <button
           className={!props.isFav ? 'button-outline' : ''}
           onClick={toggleFavHandler}

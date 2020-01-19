@@ -1,43 +1,55 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+// import React, { useEffect, useState, Fragment } from "react";
+// // import { connect } from "react-redux";
+// import axios from "axios";
 
-import * as actions from '../../store/actions/index';
+// // import * as actions from '../../store/actions/index';
 
-class Data extends React.Component {
-  state = {
-    loading: true,
-    person: []
-  };
+// const url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
 
-  async componentDidMount() {
-    const url = "https://anapioficeandfire.com/api/characters/";
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    const dataArr = data.map(res => <li key={res.name}>{data}</li>)
-    this.setState({person: dataArr} , {loading: false });
-    console.log(this.state);
-  }
+// const Data = () => {
+//   const [data, setData] = useState({quotes: []});
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [isError, setIsError] = useState(false);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       setIsError(false);
+//       setIsLoading(true);
+//       try {
+//         const result = await axios(url);
+//         setData(result.data);
+//       } catch (error) {
+//         setIsError(true);
+//       }
+//       setIsLoading(false);
+//     };
+//     fetchData();
+//   }, []);
+
+//   // async componentDidMount() {
+//   //     const url = "https://anapioficeandfire.com/api/characters/"; 
+//   //     const response = await fetch(url);
+//   //     const data = await response.json();
+//   //     console.log(data);
+      
+//   //     this.setState({data: data , loading: false });
+//   //     console.log(this.state);
+//   // }
 
   
-  render() {
-    if (this.state.loading) {
-      return <div>loading...</div>;
-    }
+//   // render() {
 
-    if (!this.state.person) {
-      return <div>didn't get a person</div>;
-    }
+//     const listItems = () => {
+//       data.quotes.map((d) => <p key={d.id}>{d.aliases[0]}</p>);}
 
-    return (
-      <div>
-        {/* <div>{this.state.person.aliases[0]}</div> */}
-        <div>{this.state.person}</div>
-        {/* <div>{this.state.person.name.last}</div>
-        <img alt="" src={this.state.person.picture.large} /> */}
-      </div>
-    );
-  }
-}
+//     return (
+//       <div>
+//         {/* <div>{this.state.person.aliases[0]}</div> */}
+//         <div>{listItems}</div>
+//         {/* <div>{this.state.person.name.last}</div>
+//         <img alt="" src={this.state.person.picture.large} /> */}
+//       </div>
+//     );
+// }
 
-export default Data;
+// export default Data;
