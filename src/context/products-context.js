@@ -1,54 +1,30 @@
 import React, { useState } from 'react';
 
 export const ProductsContext = React.createContext({
-    products: [],
+    favorites: [],
     toggleFav: (id) => {}
 });
 
 export default props => {
-    const [productsList, setProductsList] = useState([{
-        id: 'p1',
-        title: 'Red Scarf',
-        description: 'A pretty red scarf.',
-        isFavorite: false
-      },
-      {
-        id: 'p2',
-        title: 'Blue T-Shirt',
-        description: 'A pretty blue t-shirt.',
-        isFavorite: false
-      },
-      {
-        id: 'p3',
-        title: 'Green Trousers',
-        description: 'A pair of lightly green trousers.',
-        isFavorite: false
-      },
-      {
-        id: 'p4',
-        title: 'Orange Hat',
-        description: 'Street style! An orange hat.',
-        isFavorite: false
-      }
-    ]);
+    const [favoritesList, setFavoritesList] = useState([]);
     
-    const toggleFavorite = productId => {
-        setProductsList(currentProductList => {
-            const prodIndex = currentProductList.findIndex(
-                p => p.id === productId
+    const toggleFavorite = favoriteId => {
+      setFavoritesList(currentFavoriteList => {
+            const favoriteIndex = currentFavoriteList.findIndex(
+                p => p.id === favoriteId
               );
-              const newFavStatus = !currentProductList[prodIndex].isFavorite;
-              const updatedProducts = [...currentProductList];
-              updatedProducts[prodIndex] = {
-                ...currentProductList[prodIndex],
+              const newFavStatus = !currentFavoriteList[favoriteIndex].isFavorite;
+              const updatedFavorites = [...currentFavoriteList];
+              updatedFavorites[favoriteIndex] = {
+                ...currentFavoriteList[favoriteIndex],
                 isFavorite: newFavStatus
               };
-            return updatedProducts;
+            return updatedFavorites;
         });
     };
 
     return (
-        <ProductsContext.Provider value={{products: productsList, toggleFav: toggleFavorite}}>
+        <ProductsContext.Provider value={{favorites: favoritesList, toggleFav: toggleFavorite}}>
             {props.children}
         </ProductsContext.Provider>
         );
