@@ -4,8 +4,9 @@
   color: black;
 }
 
-.quote-item .is-fav {
+.quote-item p.is-fav {
   color: #ff2058;
+  background-color: blueviolet;
 }
 
 .quote-item p {

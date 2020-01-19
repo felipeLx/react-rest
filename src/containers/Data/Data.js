@@ -1,55 +1,45 @@
-// import React, { useEffect, useState, Fragment } from "react";
-// // import { connect } from "react-redux";
-// import axios from "axios";
+import React, { useState } from 'react';
+import Pagination from 'react-bootstrap/Pagination';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Quotes from '../Quotes/Quotes';
 
-// // import * as actions from '../../store/actions/index';
+const Data = () => {
 
-// const url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
+    return (
+        <>
+        <div>
+        <ButtonGroup aria-label="Basic example">
+            <Button variant="primary" onCLick={<Quotes />}>Quote I</Button>
+            <Button variant="danger">Quote II</Button>
+            <Button variant="info">Quote III</Button>
+        </ButtonGroup>
+        
+        </div>
+        <div>
+        <Pagination>
+       
+        
+            <Pagination.First />
+            <Pagination.Prev />
+            <Pagination.Item active>{1}</Pagination.Item>
+            <Pagination.Ellipsis />
 
-// const Data = () => {
-//   const [data, setData] = useState({quotes: []});
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [isError, setIsError] = useState(false);
+            <Pagination.Item>{10}</Pagination.Item>
+            <Pagination.Item>{11}</Pagination.Item>
+            <Pagination.Item>{12}</Pagination.Item>
+            <Pagination.Item>{13}</Pagination.Item>
+            <Pagination.Item>{14}</Pagination.Item>
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       setIsError(false);
-//       setIsLoading(true);
-//       try {
-//         const result = await axios(url);
-//         setData(result.data);
-//       } catch (error) {
-//         setIsError(true);
-//       }
-//       setIsLoading(false);
-//     };
-//     fetchData();
-//   }, []);
+            <Pagination.Ellipsis />
+            <Pagination.Item>{20}</Pagination.Item>
+            <Pagination.Next />
+            <Pagination.Last />
+        </Pagination>
+        </div>
+        </>
+    );
 
-//   // async componentDidMount() {
-//   //     const url = "https://anapioficeandfire.com/api/characters/"; 
-//   //     const response = await fetch(url);
-//   //     const data = await response.json();
-//   //     console.log(data);
-      
-//   //     this.setState({data: data , loading: false });
-//   //     console.log(this.state);
-//   // }
+};
 
-  
-//   // render() {
-
-//     const listItems = () => {
-//       data.quotes.map((d) => <p key={d.id}>{d.aliases[0]}</p>);}
-
-//     return (
-//       <div>
-//         {/* <div>{this.state.person.aliases[0]}</div> */}
-//         <div>{listItems}</div>
-//         {/* <div>{this.state.person.name.last}</div>
-//         <img alt="" src={this.state.person.picture.large} /> */}
-//       </div>
-//     );
-// }
-
-// export default Data;
+export default Data;

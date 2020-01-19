@@ -9,25 +9,23 @@ const QuoteItem = props => {
   const dispatch = useDispatch();
   const [detailAllow, setDetailAllow] = useState(false);
 
-  const toggleFavHandler = () => {
-    dispatch(toggleFav, props.id);
-  };
+    const toggleFavHandler = () => {
+      dispatch(toggleFav, props.id);
+    };  
 
+  
   return (
     <Card style={{ marginBottom: '1rem' }}>
       <div className="quote-item">
-          <div onClick={() => setDetailAllow(!detailAllow)}>
             {detailAllow && <h2>{props.by}</h2>}
-            <p>{props.quote}</p>
-          </div>
-          <div className={props.isFav ? 'is-fav' : ''}>
+            <p 
+              className={props.isFav ? 'is-fav' : ''}
+              onClick={() => setDetailAllow(!detailAllow)}
+            >{props.quote}</p>
         <button
           className={!props.isFav ? 'button-outline' : ''}
-          onClick={toggleFavHandler}
-        >
-          {props.isFav ? 'Un-Favorite' : 'Favorite'}
+	        onClick={props.ordered} >{props.isAuth ? 'FAVORITE' : 'SIGN UP TO FAVORITE'}
         </button>
-        </div>
       </div>
     </Card>
   );

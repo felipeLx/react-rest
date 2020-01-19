@@ -5,7 +5,7 @@ import * as actions from './store/actions/index';
 
 import Layout from './hoc/Layout/Layout';
 import Logout from './containers/Auth/Logout/Logout';
-import Quotes from './containers/Quotes/Quotes';
+import Data from './containers/Data/Data';
 // import Data from './containers/Data/Data';
 
 const FavoritesPage = React.lazy(() => {
@@ -26,8 +26,8 @@ const app = React.memo(props => {
   let routes = (
     <Switch>
       <Route path="/auth" render={props => <Auth {...props} />} />
-      {/* <Route path="/" exact component={Data} /> */}
-      <Route path="/" exact component={Quotes} />
+      <Route path="/" exact component={Data} />
+      {/* <Route path="/" exact component={Quotes} /> */}
       <Redirect to="/" />
     </Switch>
   );
@@ -38,8 +38,8 @@ const app = React.memo(props => {
         <Route path="/auth" render={props => <Auth {...props} />} />
         <Route path="/logout" component={Logout} />
         <Route path="/favorites" component={FavoritesPage} />
-        <Route path="/" exact component={Quotes} />
-        {/* <Route path="/" exact component={Data} /> */}
+        {/* <Route path="/" exact component={Quotes} /> */}
+        <Route path="/" exact component={Data} />
         {/* <Route path="/" exact component={ProductsPage} /> */}
         <Redirect to="/" />
       </Switch>
